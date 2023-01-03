@@ -1,3 +1,3 @@
 {{ config(materialized='table') }}
 
-select * from {{ ref('stg_airbnb_reviews') }} where true
+select * from {{ ref('stg_airbnb_reviews') }} where 1=1
