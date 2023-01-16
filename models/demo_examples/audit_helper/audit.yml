@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: int_test__dim_customers_compare_relations
+    tests:
+      - test__compare_relations
+
