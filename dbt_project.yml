@@ -46,7 +46,13 @@ models:
     relation: true
     columns: true
   databricks_demo:
-      staging:
-          materialized: table
-      marts:
-          materialized: table
+    demo_examples:
+      audit_helper:
+        docs:
+          show: False
+    staging:
+      materialized: table
+    marts:
+      materialized: table
+    
+      
