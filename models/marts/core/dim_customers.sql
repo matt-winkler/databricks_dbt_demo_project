@@ -39,8 +39,11 @@ final as (
         inner join region
             on nation.region_key = region.region_key
         
-        {% if target.name == 'dev' %}
-        inner join {{source('production_data_clones', 'prod__dim_customers')}} prod_version
+        {% if target.name == 'qa' %}
+        inner join (
+            select * from {{source('production_data_clones', 'dim_customers')}} limit 500
+            )
+             prod_version
            on customer.customer_key = prod_version.customer_key
 
         {% endif %}

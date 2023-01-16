@@ -2,6 +2,6 @@ version: 2
 
 sources:
   - name: production_data_clones
-    schema: "{{target.schema}}_prod_data_clones"
+    schema: prod_data_clones
     tables:
-      - name: prod__dim_customers
+      - name: dim_customers
