@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: prod
+    database: prod_clones
+    schema: analytics
+    tables:
+      - name: prod__dim_customers
