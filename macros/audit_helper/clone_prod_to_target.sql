@@ -26,7 +26,7 @@
 
   {% if execute %}
     
-    {# Return the second column which holds the table / view names #}
+    {# Return the second column which holds the table / view names from the results#}
     {% set table_results = production_tables.columns[1].values() %}
     {% set view_results = production_views.columns[1].values() %}
   
