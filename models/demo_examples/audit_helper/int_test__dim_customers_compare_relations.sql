@@ -2,7 +2,7 @@
 {# set prod_relation = source('production_data_clones', 'dim_customers') -#}
 
 {% set prod_relation = api.Relation.create(
-      database='matt_winkler_dev',
+      database=target.database,
       schema='prod_data_clones',
       identifier='dim_customers',
       type='table'
