@@ -25,8 +25,8 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
 
 dispatch:
-  - macro_namespace: dbt_utils
-    search_order: ['spark_utils', 'dbt_utils']
+ - macro_namespace: dbt_utils
+   search_order: ['spark_utils', 'dbt_utils']
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -34,13 +34,25 @@ dispatch:
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
+
+seeds:
+ databricks_demo:
+   demo_examples:
+     audit_helper:
+       +schema: prod_data_clones
+
 models:
   +persist_docs:
     relation: true
     columns: true
   databricks_demo:
-      staging:
-          materialized: table
-      marts:
-          materialized: table
+    demo_examples:
+      audit_helper:
+        docs:
+          show: False
+    staging:
+      materialized: table
+    marts:
+      materialized: table
     
+      

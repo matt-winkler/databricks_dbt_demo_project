@@ -5,6 +5,8 @@
     )
 }}
 
+-- make this model changed again
+
 with customer as (
 
     select * from {{ ref('stg_tpch_customers') }}
@@ -38,6 +40,15 @@ final as (
             on customer.nation_key = nation.nation_key
         inner join region
             on nation.region_key = region.region_key
+        
+        {% if target.name == 'qa' %}
+        inner join (
+            select * from {{source('production_data_clones', 'dim_customers')}} limit 500
+            )
+             prod_version
+           on customer.customer_key = prod_version.customer_key
+
+        {% endif %}
 )
 select 
     *
