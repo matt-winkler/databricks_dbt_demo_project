@@ -7,7 +7,17 @@
     target_database=target.database
     ) 
 %}
-   
+  
+  {# make sure the target schema exists #}
+  {% set create_target_schema_sql %}
+     create schema if not exists {{target_schema}};
+  {% endset %}
+  {% set create_target_schema_use_catalog_sql %}
+    use catalog {{target_database}};
+  {% endset %}
+  {% do run_query(create_target_schema_use_catalog_sql) %}
+  {% do run_query(create_target_schema_sql) %}
+  
   {% set table_sql %}
     show tables in {{prod_catalog}}.{{prod_schema}};
   {% endset %}
