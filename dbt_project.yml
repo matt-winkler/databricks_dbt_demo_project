@@ -48,7 +48,7 @@ models:
   databricks_demo:
     demo_examples:
       audit_helper:
-        docs:
+        +docs:
           show: False
     staging:
       materialized: table
