@@ -1,10 +1,10 @@
 {% macro 
    
    clone_prod_to_target(
-    prod_schema='analytics', 
-    prod_catalog='matt_winkler_prod', 
     target_schema='prod_data_clones', 
-    target_database=target.database
+    target_database=target.database,
+    prod_schema='analytics', 
+    prod_catalog='matt_winkler_prod'
     ) 
 %}
   
