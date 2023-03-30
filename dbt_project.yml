@@ -28,6 +28,9 @@ dispatch:
  - macro_namespace: dbt_utils
    search_order: ['spark_utils', 'dbt_utils']
 
+on-run-end:
+  - "{% if target.name == 'prod' %}{{dbt_artifacts.upload_results(results)}}{% endif %}"
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
@@ -45,6 +48,10 @@ models:
   +persist_docs:
     relation: true
     columns: true
+  dbt_artifacts:
+    +database: "{{target.database}}" # optional, default is your target database
+    +schema: dbt_artifacts 
+
   databricks_demo:
     demo_examples:
       audit_helper:
