@@ -17,7 +17,7 @@ jobs:
     # Set environment variables used throughout workflow
     env:
       #DBT_PROFILES_DIR: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.ci_cd
-      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci_cd
+      #DBT_PROFILES_DIR: ${{ github.workspace }}/.ci_cd
 
       # SPECIFY database connection credentials as env vars below.
       # Env var values to be fetched from as GitHub Secrets.
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install dbt
         run: "pip install dbt-core==1.4.5"
-      - name: Install dbt databricks adaptor
+      - name: Install dbt databricks adapter
         run: "pip install dbt-databricks==1.4.2"
       - name: SQLFluff lint models/ and apply fixes
         # https://github.com/yu-iskw/action-sqlfluff
