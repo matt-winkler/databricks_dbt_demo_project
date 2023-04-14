@@ -1,0 +1,11 @@
+name: dbt-sqlfluff-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - python=3.9
+  - pip:
+    - dbt-core==1.4.5
+    - dbt-databricks=1.4.2
+    - sqlfluff==1.4.2
