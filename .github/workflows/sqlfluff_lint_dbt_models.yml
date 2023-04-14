@@ -16,7 +16,8 @@ jobs:
         python-version: [3.8]
     # Set environment variables used throughout workflow
     env:
-      DBT_PROFILES_DIR: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.ci_cd
+      #DBT_PROFILES_DIR: /home/runner/work/${{ github.event.repository.name }}/${{ github.event.repository.name }}/.ci_cd
+      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci_cd
 
       # SPECIFY database connection credentials as env vars below.
       # Env var values to be fetched from as GitHub Secrets.
