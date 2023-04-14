@@ -109,6 +109,12 @@ jobs:
       #   shell: bash -l {0}
       #   run : |
       #     dbt compile
+      
+      - name: Install dbt deps
+        if: steps.get_files_to_lint.outputs.lintees != ''
+        shell: bash -l {0}
+        run: |
+          dbt deps
 
       - name: Lint dbt models
         if: steps.get_files_to_lint.outputs.lintees != ''
