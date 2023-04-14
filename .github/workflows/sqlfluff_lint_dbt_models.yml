@@ -47,7 +47,8 @@ jobs:
           pip install dbt-core==1.4.5
           pip install dbt-databricks==1.4.2
           pip install sqlfluff==1.4.2
-          
+          pip install sqlfluff-templater-dbt
+
         # uses: conda-incubator/setup-miniconda@v2
         # with:
         #   activate-environment: dbt-sqlfluff-env
