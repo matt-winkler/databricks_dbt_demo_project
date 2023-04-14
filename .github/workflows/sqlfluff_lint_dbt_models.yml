@@ -144,14 +144,18 @@ jobs:
         run: |
           dbt deps
 
-      - name: Lint dbt models
-        if: steps.get_files_to_lint.outputs.lintees != ''
-        shell: bash -l {0}
-        run: sqlfluff lint --format github-annotation --annotation-level failure --nofail ${{ steps.get_files_to_lint.outputs.lintees }} | grep -o '\[{.*' > annotations.json
+      # - name: Lint dbt models
+      #   if: steps.get_files_to_lint.outputs.lintees != ''
+      #   shell: bash -l {0}
+      #   run: sqlfluff lint --format github-annotation --annotation-level failure --nofail ${{ steps.get_files_to_lint.outputs.lintees }} | grep -o '\[{.*' > annotations.json
 
-      - name: Annotate
-        uses: yuzutech/annotations-action@v0.3.0
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          title: "SQLFluff Lint"
-          input: "./annotations.json"
+      # - name: Annotate
+      #   uses: yuzutech/annotations-action@v0.3.0
+      #   with:
+      #     repo-token: "${{ secrets.GITHUB_TOKEN }}"
+      #     title: "SQLFluff Lint"
+      #     input: "./annotations.json"
+      
+      - name: Fix
+        shell: bash -l {0}
+        run: sqlfluff fix -f ${{ steps.get_files_to_lint.outputs.lintees }}
