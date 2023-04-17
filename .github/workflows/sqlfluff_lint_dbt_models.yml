@@ -22,10 +22,10 @@ jobs:
       PROFILES_YML_TOKEN: ${{ secrets.PROFILES_YML_TOKEN }}
     steps:
       - uses: actions/checkout@v3
-      - name: Install dbt
-        run: "pip install dbt-core==1.4.5"
-      - name: Install dbt databricks adaptor
-        run: "pip install dbt-databricks==1.4.2"
+      #- name: Install dbt
+      #  run: "pip install dbt-core==1.4.5"
+      #- name: Install dbt databricks adaptor
+      #  run: "pip install dbt-databricks==1.4.2"
       - name: SQLFluff lint models/ and apply fixes
         # https://github.com/yu-iskw/action-sqlfluff
         #uses: yu-iskw/action-sqlfluff@a28280f53bbb888a7a1c8d560c01b32b97269198
@@ -34,13 +34,14 @@ jobs:
         with:
           # config: ".github/workflows/additional_cfg.sqlfluff"
           config: "${{ github.workspace }}/.github/workflows/additional_cfg.sqlfluff"
+          extra_requirements: "${{ github.workspace }}/.github/workflows/extra_requirements.txt"
           fail_on_error: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # paths: "dbt_transform/models"
           paths: "${{ github.workspace }}/models"
           reporter: github-pr-review
           sqlfluff_version: "1.4.5"
-          sqlfluff_command: "lint" # Or "lint"
+          sqlfluff_command: "fix" # Or "lint"
           # working-directory: "udemy-data-warehouse/dbt_transform"
           working-directory: "${{ github.workspace }}"
       - name: "Show outputs (Optional)" # Only works in "lint" mode
