@@ -39,7 +39,7 @@ jobs:
           paths: "${{ github.workspace }}/models"
           reporter: github-pr-review
           sqlfluff_version: "1.4.5"
-          sqlfluff_command: "fix" # Or "lint"
+          sqlfluff_command: "lint" # Or "lint"
           # working-directory: "udemy-data-warehouse/dbt_transform"
           working-directory: "${{ github.workspace }}"
       - name: "Show outputs (Optional)" # Only works in "lint" mode
