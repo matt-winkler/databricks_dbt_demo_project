@@ -17,6 +17,9 @@ jobs:
         python-version: [3.8]
     env: 
       DBT_PROFILES_DIR: ${{ github.workspace }}/.ci_cd
+      PROFILES_YML_HOST: ${{ secrets.PROFILES_YML_HOST }}
+      PROFILES_YML_HTTP_PATH: ${{ secrets.PROFILES_YML_HTTP_PATH }}
+      PROFILES_YML_TOKEN: ${{ secrets.PROFILES_YML_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Install dbt
