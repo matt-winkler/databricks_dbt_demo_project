@@ -28,7 +28,8 @@ jobs:
         run: "pip install dbt-databricks==1.4.2"
       - name: SQLFluff lint models/ and apply fixes
         # https://github.com/yu-iskw/action-sqlfluff
-        uses: yu-iskw/action-sqlfluff@a28280f53bbb888a7a1c8d560c01b32b97269198
+        #uses: yu-iskw/action-sqlfluff@a28280f53bbb888a7a1c8d560c01b32b97269198
+        uses: yu-iskw/action-sqlfluff@v3
         id: lint-sql
         with:
           # config: ".github/workflows/additional_cfg.sqlfluff"
