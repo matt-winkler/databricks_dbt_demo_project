@@ -28,9 +28,8 @@ jobs:
         uses: yu-iskw/action-sqlfluff@v3
         id: lint-sql
         with:
-          # config: ".github/workflows/additional_cfg.sqlfluff"
-          config: "../.github/workflows/additional_cfg.sqlfluff"
-          extra_requirements_txt: "../.github/workflows/extra_requirements.txt"
+          config: "${{ github.workspace }}/.github/workflows/additional_cfg.sqlfluff"
+          extra_requirements_txt: "${{ github.workspace }}/.github/workflows/extra_requirements.txt"
           fail_on_error: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           paths: "${{ github.workspace }}/dbt_transform_code/models"
