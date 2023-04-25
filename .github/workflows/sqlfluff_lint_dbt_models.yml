@@ -35,10 +35,8 @@ jobs:
           paths: ${{ github.workspace }}/dbt_transform_code/models
           reporter: github-pr-review
           sqlfluff_version: 1.4.5
-          sqlfluff_command: "cd ${{ github.workspace }}/dbt_transform_code && fix" # Or "lint"
+          sqlfluff_command: fix # Or "lint"
           working-directory: ${{ github.workspace }}/dbt_transform_code
-        run: |
-          echo '${{ github.workspace }}/dbt_transform_code'
       - name: "Show outputs (Optional)" # Only works in "lint" mode
         shell: bash
         run: |
