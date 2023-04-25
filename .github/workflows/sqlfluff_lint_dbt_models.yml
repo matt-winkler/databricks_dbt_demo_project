@@ -28,17 +28,18 @@ jobs:
         uses: yu-iskw/action-sqlfluff@v3
         id: lint-sql
         with:
-          config: "${{ github.workspace }}/.github/workflows/additional_cfg.sqlfluff"
-          extra_requirements_txt: "${{ github.workspace }}/.github/workflows/extra_requirements.txt"
+          config: ${{ github.workspace }}/.github/workflows/additional_cfg.sqlfluff
+          extra_requirements_txt: ${{ github.workspace }}/.github/workflows/extra_requirements.txt
           fail_on_error: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          paths: "${{ github.workspace }}/dbt_transform_code/models"
+          paths: ${{ github.workspace }}/dbt_transform_code/models
           reporter: github-pr-review
-          sqlfluff_version: "1.4.5"
-          sqlfluff_command: "fix" # Or "lint"
-          working-directory: "${{ github.workspace }}/dbt_transform_code/"
+          sqlfluff_version: 1.4.5
+          sqlfluff_command: fix # Or "lint"
+          working-directory: ${{ github.workspace }}/dbt_transform_code
       - name: "Show outputs (Optional)" # Only works in "lint" mode
         shell: bash
         run: |
+          echo '${{ github.workspace }}/dbt_transform_code'
           echo '${{ steps.lint-sql.outputs.sqlfluff-results }}' | jq -r '.'
           echo '${{ steps.lint-sql.outputs.sqlfluff-results-rdjson }}' | jq -r '.'
