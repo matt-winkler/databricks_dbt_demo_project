@@ -4,7 +4,7 @@
             unique_key='id',
             strategy='timestamp',
             updated_at='_updated_at',
-            target_schema=generate_schema_name('marketing', this)
+            target_schema='marketing',
         )
     }}
 

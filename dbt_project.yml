@@ -35,9 +35,6 @@ dispatch:
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 
-snapshots:
-  marketing:
-    +target_schema: 'mkt_snapshots'
 
 seeds:
  databricks_demo:
