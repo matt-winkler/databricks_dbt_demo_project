@@ -1,3 +1,9 @@
+{{
+    config(
+        enabled=False
+    )
+}}
+
 
 {%- set yaml_metadata -%}
 userId: STRING
