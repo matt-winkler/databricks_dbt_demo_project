@@ -15,6 +15,9 @@ order_item as (
     select * from {{ ref('order_items') }}
 
 ),
+customers as (
+    select * from {{ ref('dim_customers') }}
+),
 
 order_item_summary as (
 
@@ -37,6 +40,7 @@ final as (
         orders.order_date,
         orders.customer_key,
         orders.status_code,
+        customers.region,
         orders.priority_code,
         orders.clerk_name,
         
@@ -51,6 +55,8 @@ final as (
         orders
         inner join order_item_summary
             on orders.order_key = order_item_summary.order_key
+        inner join customers
+            on orders.customer_key = customers.customer_key
 )
 select 
     *
