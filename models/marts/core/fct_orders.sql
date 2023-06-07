@@ -15,9 +15,6 @@ order_item as (
     select * from {{ ref('order_items') }}
 
 ),
-customers as (
-    select * from {{ref('dim_customers')}}
-),
 
 order_item_summary as (
 
