@@ -9,3 +9,5 @@ packages:
     version: 0.3.0
   - package: dbt-labs/audit_helper
     version: 0.6.0
+  - git: "https://github.com/dbt-labs/dbt-labs-experimental-features"
+    subdirectory: insert_by_period
