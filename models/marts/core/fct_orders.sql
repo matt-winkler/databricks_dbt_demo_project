@@ -5,8 +5,6 @@
     )
 }}
 
--- add a comment
-
 with orders as (
     
     select * from {{ ref('stg_tpch_orders') }}
@@ -17,7 +15,6 @@ order_item as (
     select * from {{ ref('order_items') }}
 
 ),
-
 customers as (
     select * from {{ ref('dim_customers') }}
 ),
@@ -45,6 +42,7 @@ final as (
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
+        customers.region,
         
         orders.ship_priority,
                 
@@ -57,6 +55,8 @@ final as (
         orders
         inner join order_item_summary
             on orders.order_key = order_item_summary.order_key
+        inner join customers
+            on orders.customer_key = customers.customer_key
 )
 select 
     *
