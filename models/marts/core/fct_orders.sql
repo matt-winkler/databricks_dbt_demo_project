@@ -15,9 +15,6 @@ order_item as (
     select * from {{ ref('order_items') }}
 
 ),
-customers as (
-    select * from {{ ref('dim_customers') }}
-),
 
 order_item_summary as (
 
@@ -42,7 +39,6 @@ final as (
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
-        customers.region,
         
         orders.ship_priority,
                 
