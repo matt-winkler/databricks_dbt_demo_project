@@ -1,7 +1,10 @@
 {{
     config(
         materialized='incremental',
-        unique_key='order_key'
+        format='parquet',
+        incremental_strategy='merge',
+        unique_key='order_key',
+        location_root='s3://databricks-to-redshift-tmp/data/'
     )
 }}
 

@@ -1,7 +1,8 @@
 {{
     config(
         materialized = 'table',
-        tags=['finance']
+        tags=['finance'],
+        location_root='s3://databricks-to-redshift-tmp/data/'
     )
 }}
 
