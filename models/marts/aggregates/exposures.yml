@@ -1,7 +1,7 @@
 version: 2
 
 exposures:
-  - name: yearly_part_rollup
+  - name: parts_by_year_rollup__dashboard
     description: |
       # An h1 header
       ============
@@ -30,7 +30,7 @@ exposures:
     
     # IMPORTANT: determines the lineage relationship of the exposure construct to the rest of your DAG
     depends_on:
-      - ref('agg_yearly_parts_hardcoded_pivot')
+      - ref('parts_by_year_rollup')
 
   - name: orders_dashboard
     description: 
