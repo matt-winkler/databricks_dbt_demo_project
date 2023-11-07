@@ -40,6 +40,7 @@ seeds:
  databricks_demo:
    demo_examples:
     +schema: reference
+    +tags: "send"
 
 models:
   +persist_docs:
@@ -55,4 +56,4 @@ models:
     staging:
       materialized: table
     marts:
-      materialized: table      
+      materialized: table
