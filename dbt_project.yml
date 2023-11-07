@@ -39,8 +39,7 @@ dispatch:
 seeds:
  databricks_demo:
    demo_examples:
-     audit_helper:
-       +schema: prod_data_clones
+    +schema: reference
 
 models:
   +persist_docs:
@@ -56,6 +55,4 @@ models:
     staging:
       materialized: table
     marts:
-      materialized: table
-    
-      
+      materialized: table      
