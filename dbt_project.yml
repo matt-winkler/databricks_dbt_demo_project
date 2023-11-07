@@ -12,10 +12,10 @@ profile: 'default'
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
-source-paths: ["models"]
+model-paths: ["models"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
-data-paths: ["data"]
+seed-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
@@ -39,13 +39,13 @@ dispatch:
 seeds:
  databricks_demo:
    demo_examples:
-     audit_helper:
-       +schema: prod_data_clones
+    +schema: reference
+    +tags: "send"
 
 models:
   +persist_docs:
     relation: true
-    columns: true
+    columns: false
   databricks_demo:
     demo_examples:
       models_that_need_partition_by:
@@ -57,5 +57,3 @@ models:
       materialized: table
     marts:
       materialized: table
-    
-      
