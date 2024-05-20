@@ -4,7 +4,6 @@ with source as (
 
 ),
 
-
 renamed as (
 
     select
@@ -24,4 +23,3 @@ renamed as (
 )
 
 select * from renamed
-limit 100000
