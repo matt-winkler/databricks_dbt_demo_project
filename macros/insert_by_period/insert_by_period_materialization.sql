@@ -3,6 +3,7 @@
   {%- set start_date = config.require('start_date') -%}
   {%- set stop_date = config.get('stop_date') or '' -%}
   {%- set period = config.get('period') or 'week' -%}
+  {%- set backfill = config.get('backfill') or False -%}
 
   {%- if sql.find('__PERIOD_FILTER__') == -1 -%}
     {%- set error_message -%}
@@ -56,7 +57,9 @@
     timestamp_field,
     start_date,
     stop_date,
-    period
+    period,
+    backfill,
+    full_refresh_mode,
   ) %}
   {% set period_boundaries_results = load_result('period_boundaries')['data'][0] %}
   {%- set start_timestamp = period_boundaries_results[0] | string -%}
@@ -97,21 +100,13 @@
       );
     {%- endcall %}
     {% set result = load_result('main-' ~ i) %}
-    {# databricks provides rows affected in a different part of the result response #}
-    {% if target.type == 'databricks' %}
-      {% if 'data' in result.keys() %}
-        {% set rows_inserted = result['data'][0][0] | int %}
-      {% endif %}
-    {% elif 'response' in result.keys() %} {# added in v0.19.0 #}
-        {% set rows_inserted = result['response']['rows_affected'] %}
-    {% else %} {# older versions #}
-        {% set rows_inserted = result['status'].split(" ")[2] | int %}
-    {% endif %}
+    
+    {% set rows_inserted = get_rows_inserted(result) %}
 
     {%- set sum_rows_inserted = loop_vars['sum_rows_inserted'] + rows_inserted -%}
     {%- if loop_vars.update({'sum_rows_inserted': sum_rows_inserted}) %} {% endif -%}
 
-    {%- set msg = "Ran for " ~ period ~ " " ~ (i + 1) ~ " of " ~ (num_periods) ~ "; " ~ rows_inserted ~ " records inserted" -%}
+    {%- set msg = "Ran for " ~ period ~ " " ~ (i + 1) ~ " of " ~ (num_periods) ~ "; " ~ rows_inserted ~ " record(s) inserted" -%}
     {{ print(msg) }}
 
   {%- endfor %}
@@ -128,9 +123,6 @@
 
   -- `COMMIT` happens here
   {{ adapter.commit() }}
-
-  -- finally, drop the existing/backup relation after the commit
-  {# {{ drop_relation_if_exists(backup_relation) }} #}
 
   {{ run_hooks(post_hooks, inside_transaction=False) }}
   -- end from the table mat

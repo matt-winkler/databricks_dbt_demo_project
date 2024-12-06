@@ -3,9 +3,11 @@
         materialized = 'insert_by_period',
         period = 'day',
 		timestamp_field = 'the_date',
-		start_date = var('start_date', '2024-01-01'),
-		stop_date = var('stop_date', '2024-01-05'),
-        enabled = (target.type == 'databricks')
+		start_date = var('start_date', '2023-12-31'),
+		stop_date = var('stop_date', '2024-01-03'),
+        backfill = True,
+        enabled = (target.type == 'databricks'),
+        pre_hook = "delete from {{this}} where the_date between " ~ "'" ~ var('start_date', '2024-12-31') ~ "'" ~ " and " ~ "'" ~ var('end_date', '2024-01-03') ~ "'"
     )
 }}
 
