@@ -36,12 +36,6 @@ dispatch:
 # using the `{{ config(...) }}` macro.
 
 
-seeds:
- databricks_demo:
-   demo_examples:
-     audit_helper:
-       +schema: prod_data_clones
-
 models:
   +persist_docs:
     relation: true
