@@ -1,0 +1,34 @@
+saved_queries:
+  - name: metrics_sales_by_region
+    description: Relevant sales metrics by region
+    config:
+      cache:
+        enabled: true
+    query_params:
+      metrics:
+        - total_revenue
+        - total_expense
+        - total_profit
+
+      group_by:
+        - TimeDimension('metric_time', 'day')
+        - Dimension('customer__region')
+        - Dimension('customer__nation')
+    exports:
+      - name: sales_metrics_by_region
+        config:
+          export_as: table
+          schema: aa_metrics
+
+  - name: metrics_cumulative_revenue_total
+    description: Cumulative total revenue
+    query_params:
+      metrics:
+        - cumulative_revenue_ttm
+      group_by:
+        - TimeDimension('metric_time', 'day')
+    exports:
+      - name: cumulative_revenue
+        config:
+          export_as: table
+          schema: aa_metrics
