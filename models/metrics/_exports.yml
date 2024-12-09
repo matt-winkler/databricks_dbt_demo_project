@@ -24,7 +24,7 @@ saved_queries:
     description: Cumulative total revenue
     query_params:
       metrics:
-        - cumulative_revenue_ttm
+        - cumulative_revenue_total
       group_by:
         - TimeDimension('metric_time', 'day')
     exports:
