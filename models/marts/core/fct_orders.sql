@@ -5,6 +5,8 @@
     )
 }}
 
+-- comment to trigger CI run
+
 with orders as (
     
     select * from {{ ref('stg_tpch_orders') }}
