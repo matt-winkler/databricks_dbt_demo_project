@@ -17,6 +17,9 @@ part_supplier as (
 ),
 final as (
     select 
+        {{dbt_utils.generate_surrogate_key(
+            ['order_item.order_key', 'order_item.order_date']
+            )}} as order_uuid,
         order_item.order_item_key,
         order_item.order_key,
         order_item.order_date,
