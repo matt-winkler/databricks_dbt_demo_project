@@ -5,6 +5,8 @@
     )
 }}
 
+-- comment to trigger CI run
+
 with orders as (
     
     select * from {{ ref('stg_tpch_orders') }}
@@ -32,7 +34,10 @@ order_item_summary as (
 final as (
 
     select 
-
+        
+        {{dbt_utils.generate_surrogate_key(
+            ['orders.order_key', 'orders.order_date']
+            )}} as order_uuid,
         orders.order_key, 
         orders.order_date,
         orders.customer_key,

@@ -2,6 +2,7 @@ version: 2
 
 
 semantic_models:
+    
   - name: orders
     description: |
       Order fact table at the order level.  This table contains one row
@@ -13,7 +14,7 @@ semantic_models:
     entities:
       - name: customer_order
         type: primary
-        expr: order_key
+        expr: order_uuid
       - name: customer
         type: foreign
         expr: customer_key
@@ -105,7 +106,7 @@ semantic_models:
         expr: customer_key
       - name: customer_order
         type: foreign
-        expr: order_key
+        expr: order_uuid
 
     dimensions:
       - name: order_date
