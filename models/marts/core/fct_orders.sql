@@ -5,7 +5,6 @@
     )
 }}
 
--- comment to trigger CI run
 
 with orders as (
     
