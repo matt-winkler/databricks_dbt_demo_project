@@ -20,5 +20,5 @@ from {{ ref('fct_orders') }}
 -- third run - process the rest of the data up to today
 -- dbt run -s fct_orders_microbatch --event-time-start "1994-01-01" --event-time-end "2025-01-01"
 
--- fourth run -- do the rest
+-- fourth run -- do the rest, including the configured lookback period
 -- dbt run -s fct_orders_microbatch
