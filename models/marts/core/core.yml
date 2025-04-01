@@ -132,6 +132,8 @@ models:
   
   - name: fct_orders
     description: orders fact table
+    config:
+      event_time: order_date
     columns:
       - name: order_key
         description: primary key of the model
