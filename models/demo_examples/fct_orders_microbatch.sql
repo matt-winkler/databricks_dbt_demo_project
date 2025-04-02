@@ -1,11 +1,11 @@
 {# 
   Usage notes
   - make sure the event_time config is set on the macrobatch model and any models / sources it pulls from 
-  - he lookback config determines the default number of batches
-  - se concurrent_batches to accelerate processing
-  - se dbt retry -s my_model to reprocess failed batches when needed
-  - verride default batches and begin / end dates by passing --event-time-start and --event-time-end to dbt run
-  - bt will attempt to process batches up to the current time (aka not the last business date from upstream tables)
+  - the lookback config determines the default number of batches
+  - use concurrent_batches to accelerate processing
+  - use dbt retry -s my_model to reprocess failed batches when needed
+  - override default batches and begin / end dates by passing --event-time-start and --event-time-end to dbt run
+  - dbt will attempt to process batches up to the current time (aka not the last business date from upstream tables)
   - do not pass the --full-refresh flag without including --event-time-start and --event-time-end; it does nothing otherwise 
 
 Example command flow:
