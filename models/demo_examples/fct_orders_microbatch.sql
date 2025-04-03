@@ -12,7 +12,7 @@ Example command flow:
 -- first run: create the table for one specific set of dates (for illustration purposes)
 -- dbt run -s fct_orders_microbatch --event-time-start "2019-01-01" --event-time-end "2020-01-01" --full-refresh
 
--- second run - fill in the current year and prior year data
+-- second run - fill in the current year and prior year data.
 -- dbt run -s fct_orders_microbatch
 -- this did nothing because the lookback config pulls 1 year earlier than current (2024), plus the current year
 
