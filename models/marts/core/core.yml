@@ -7,9 +7,9 @@ unit_tests:
     given:
       - input: ref('stg_tpch_orders')
         rows:
-          - {order_key: 1, status_code: F,    priority_code: '4-NOT SPECIFIED'}
-          - {order_key: 2, status_code: O,    priority_code: '1-URGENT'}
-          - {order_key: 3, status_code: P,    priority_code: '2-HIGH'}
+          - {order_key: 1, status_code: F, priority_code: '4-NOT SPECIFIED'}
+          - {order_key: 2, status_code: O, priority_code: '1-URGENT'}
+          - {order_key: 3, status_code: P, priority_code: '2-HIGH'}
       - input: ref('order_items')
         rows:
           - {order_key: 1}
