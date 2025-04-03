@@ -26,8 +26,7 @@ Example command flow:
     event_time='order_date',
     begin='2019-01-01',
     batch_size='year',
-    lookback=1, 
-    concurrent_batches=True
+    lookback=1
 )}}
 
 select * 
