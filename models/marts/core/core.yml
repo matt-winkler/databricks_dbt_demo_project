@@ -1,5 +1,26 @@
 version: 2
 
+unit_tests:
+  - name: test_is_valid_risk_score
+    description: "Check the risk score calculation works"
+    model: fct_orders
+    given:
+      - input: ref('stg_tpch_orders')
+        rows:
+          - {order_key: 1, status_code: F,    priority_code: '4-NOT SPECIFIED'}
+          - {order_key: 2, status_code: O,    priority_code: '1-URGENT'}
+          - {order_key: 3, status_code: P,    priority_code: '2-HIGH'}
+      - input: ref('order_items')
+        rows:
+          - {order_key: 1}
+          - {order_key: 2}
+          - {order_key: 3}
+    expect:
+      rows:
+        - {risk_score: 4}
+        - {risk_score: 2}
+        - {risk_score: 6}
+
 models:
   - name: dim_customers
     description: Customer dimensions table

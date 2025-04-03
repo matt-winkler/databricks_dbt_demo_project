@@ -43,7 +43,11 @@ final as (
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
-        
+        case
+        when status_code = 'F' then 1 * int(left(priority_code, 1))
+        when status_code = 'O' then 2 * int(left(priority_code, 1))
+        when status_code = 'P' then 3 * int(left(priority_code, 1))
+        else 0 end as risk_score,
         orders.ship_priority,
                 
         1 as order_count,                
