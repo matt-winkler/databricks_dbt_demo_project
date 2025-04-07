@@ -37,17 +37,12 @@ final as (
         {{dbt_utils.generate_surrogate_key(
             ['orders.order_key', 'orders.order_date']
             )}} as order_uuid,
-        orders.order_key, 
-        orders.order_date,
+        dateadd(year, 27, orders.order_date) as order_date,
         orders.customer_key,
         orders.status_code,
         orders.priority_code,
         orders.clerk_name,
-        case
-        when status_code = 'F' then 1 * int(left(priority_code, 1))
-        when status_code = 'O' then 2 * int(left(priority_code, 1))
-        when status_code = 'P' then 3 * int(left(priority_code, 1))
-        else 0 end as risk_score,
+        
         orders.ship_priority,
                 
         1 as order_count,                
