@@ -3,6 +3,13 @@ version: 2
 
 metrics:
   # Simple metrics
+  - name: risk_score
+    description: the average risk score across various slices
+    type: simple
+    label: Average Risk Score
+    type_params:
+      measure: risk_score
+
   - name: total_revenue
     description: The total revenue for the business
     type: simple

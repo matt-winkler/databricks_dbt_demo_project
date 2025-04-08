@@ -22,6 +22,9 @@ saved_queries:
 
   - name: metrics_cumulative_revenue_total
     description: Cumulative total revenue
+    config:
+      cache:
+        enabled: true 
     query_params:
       metrics:
         - cumulative_revenue_total

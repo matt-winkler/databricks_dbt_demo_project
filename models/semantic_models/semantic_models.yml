@@ -47,6 +47,9 @@ semantic_models:
       - name: total_customers
         agg: count_distinct
         expr: customer_key
+      - name: risk_score
+        agg: average
+        expr: risk_score
 
   - name: customers
     description: |
