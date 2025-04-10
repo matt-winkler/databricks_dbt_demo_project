@@ -14,7 +14,6 @@ Example command flow:
 
 -- second run - fill in the current year and prior year data.
 -- dbt run -s fct_orders_microbatch
--- this did nothing because the lookback config pulls 1 year earlier than current (2024), plus the current year
 
 -- backfill run
 -- dbt run -s fct_orders_microbatch --event-time-start "2020-01-01" --event-time-end "2024-01-01"
@@ -25,9 +24,13 @@ Example command flow:
     incremental_strategy='microbatch',
     event_time='order_date',
     begin='2019-01-01',
-    batch_size='year',
-    lookback=1
-)}}
+    batch_size='day',
+    lookback=2
+)}} 
 
 select * 
 from {{ ref('fct_orders_updated') }}
+{% if is_incremental() %}
+ something
+{% endif %}
+
