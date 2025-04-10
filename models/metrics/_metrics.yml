@@ -65,6 +65,7 @@ metrics:
       numerator: total_revenue
       denominator: total_customers
 
+
   # Derived metrics
   - name: total_profit
     description: The total profit for the business
