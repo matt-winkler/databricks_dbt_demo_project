@@ -2,3 +2,8 @@ models:
   - name: fct_orders_updated
     config:
       event_time: order_date
+  - name: fct_orders_microbatch
+    columns:
+      - name: order_key
+        tests:
+          - unique
