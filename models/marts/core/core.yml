@@ -34,8 +34,9 @@ models:
         description: region name
         tests:
           - accepted_values:
-              values: ['AFRICA','MIDDLE EAST','ASIA','EUROPE','AMERICA']
-              severity: warn
+              values: ['AFRICA', 'MIDDLE EAST', 'ASIA', 'EUROPE', 'AMERICA']
+              config:
+                severity: warn
       - name: name
         description: customer id
       - name: address
@@ -93,7 +94,6 @@ models:
         description: '{{ doc("phone_number") }}'
       - name: account_balance
         description: '{{ doc("account_balance") }}'
- 
   - name: fct_order_items
     description: order items fact table
     columns:
@@ -150,7 +150,6 @@ models:
         description: '{{ doc("item_tax_amount") }}'
       - name: net_item_sales_amount
         description: '{{ doc("net_item_sales_amount") }}'
-  
   - name: fct_orders
     description: orders fact table
     columns:

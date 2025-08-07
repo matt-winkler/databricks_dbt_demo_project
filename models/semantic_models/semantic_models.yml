@@ -1,8 +1,6 @@
 version: 2
 
-
 semantic_models:
-    
   - name: orders
     description: |
       Order fact table at the order level.  This table contains one row

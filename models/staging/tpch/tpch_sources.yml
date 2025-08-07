@@ -4,21 +4,17 @@ sources:
   - name: tpch
     schema: tpch
     catalog: hive_metastore
-    
+
     tables:
       - name: orders
         description: main order tracking table
-        freshness: # default freshness - 12 count
-          warn_after: {count: 12, period: hour}
-          error_after: {count: 24, period: hour}
-        loaded_at_field: o_orderdate::timestamp
         columns:
           - name: o_orderkey
             description: SF*1,500,000 are sparsely populated
-            tests: 
+            tests:
               - unique
               - not_null
-                  
+
           - name: o_custkey
             description: Foreign Key to C_CUSTKEY
             tests:
@@ -32,16 +28,23 @@ sources:
           - name: o_clerk
           - name: o_shippriority
           - name: o_comment
-          
+
+        config:
+          freshness: # default freshness - 12 count
+            warn_after: {count: 12, period: hour}
+            error_after: {count: 24, period: hour}
+          loaded_at_field: o_orderdate::timestamp
       - name: customer
         columns:
           - name: c_custkey
             description: unique customer key
             tests:
               - unique:
-                  severity: warn
+                  config:
+                    severity: warn
               - not_null:
-                  severity: warn
+                  config:
+                    severity: warn
           - name: c_name
           - name: c_address
           - name: c_nationkey
@@ -59,7 +62,7 @@ sources:
                   to: source('tpch', 'orders')
                   field: o_orderkey
           - name: l_partkey
-            description:  Foreign key to P_PARTKEY, first part of the compound Foreign Key to (PS_PARTKEY,PS_SUPPKEY) with L_SUPPKEY
+            description: Foreign key to P_PARTKEY, first part of the compound Foreign Key to (PS_PARTKEY,PS_SUPPKEY) with L_SUPPKEY
             tests:
               - relationships:
                   to: source('tpch', 'part')
@@ -90,9 +93,11 @@ sources:
             description: 25 nations are populated
             tests:
               - unique:
-                  severity: warn
+                  config:
+                    severity: warn
               - not_null:
-                  severity: warn
+                  config:
+                    severity: warn
           - name: n_name
           - name: n_regionkey
             description: Foreign Key to R_REGIONKEY
@@ -108,9 +113,11 @@ sources:
             description: SF*200,000 are populated
             tests:
               - unique:
-                  severity: warn
+                  config:
+                    severity: warn
               - not_null:
-                  severity: warn
+                  config:
+                    severity: warn
           - name: p_name
           - name: p_mfgr
           - name: p_brand
@@ -144,9 +151,11 @@ sources:
             description: 5 regions are populated
             tests:
               - unique:
-                  severity: warn
+                  config:
+                    severity: warn
               - not_null:
-                  severity: warn
+                  config:
+                    severity: warn
           - name: r_name
           - name: r_comment
 
@@ -156,9 +165,11 @@ sources:
             description: SF*10,000 are populated
             tests:
               - unique:
-                  severity: warn
+                  config:
+                    severity: warn
               - not_null:
-                  severity: warn
+                  config:
+                    severity: warn
           - name: s_name
           - name: s_address
           - name: s_nationkey
